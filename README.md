@@ -1,5 +1,5 @@
 spring-jenkins-actuator
-============
+=======================
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.itelg.spring/spring-jenkins-actuator/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.itelg.spring/spring-jenkins-actuator)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/2a49d5565df7457697072dc5b1cdc5be)](https://www.codacy.com/app/eggers-julian/spring-jenkins-actuator)
@@ -10,13 +10,11 @@ SpringBoot Jenkins Actuator
 
 #### Maven
 ```xml
-<dependencies>
-	<dependency>
-		<groupId>com.itelg.spring</groupId>
-		<artifactId>spring-jenkins-actuator</artifactId>
-		<version>0.1.0-RELEASE</version>
-	</dependency>
-</dependencies>
+<dependency>
+	<groupId>com.itelg.spring</groupId>
+	<artifactId>spring-jenkins-actuator</artifactId>
+	<version>0.2.0-RELEASE</version>
+</dependency>
 ```
 
 #### Example
