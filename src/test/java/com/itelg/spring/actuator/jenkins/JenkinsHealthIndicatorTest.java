@@ -1,24 +1,42 @@
 package com.itelg.spring.actuator.jenkins;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.boot.actuate.health.Status;
 
 public class JenkinsHealthIndicatorTest
 {
-    @Test
     @Ignore
-    public void testIT()
-    {
-        HealthIndicator healthIndicator = new JenkinsHealthIndicator("http://server01:8080/");
-        System.out.println(healthIndicator.health());
-    }
-    
     @Test
-    public void testGetJenkinsUrl()
+    public void testWithUpAndWithAuthentication()
     {
-        JenkinsHealthIndicator healthIndicator = new JenkinsHealthIndicator("http://jenkins.com");
-        Assert.assertEquals("http://jenkins.com", healthIndicator.getJenkinsUrl());
+        HealthIndicator healthIndicator = new JenkinsHealthIndicator("http://192.168.2.110:8080/", "admin", "d4920417fc6842039222df91b8c68be5");
+        Health health = healthIndicator.health();
+        assertEquals(Status.UP, health.getStatus());
+        assertNotNull(health.getDetails().get("version"));
+    }
+
+    @Test
+    public void testWithUpAndWithoutAuthentication()
+    {
+        HealthIndicator healthIndicator = new JenkinsHealthIndicator("https://jenkins.mono-project.com/");
+        Health health = healthIndicator.health();
+        assertEquals(Status.UP, health.getStatus());
+        assertNotNull(health.getDetails().get("version"));
+    }
+
+    @Test
+    public void testWithDown()
+    {
+        HealthIndicator healthIndicator = new JenkinsHealthIndicator("http://jenkins.com/");
+        Health health = healthIndicator.health();
+        assertEquals(Status.DOWN, health.getStatus());
+        assertNull(health.getDetails().get("version"));
     }
 }

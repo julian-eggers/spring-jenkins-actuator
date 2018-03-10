@@ -13,7 +13,7 @@ SpringBoot Jenkins Actuator
 <dependency>
 	<groupId>com.itelg.spring</groupId>
 	<artifactId>spring-jenkins-actuator</artifactId>
-	<version>0.2.0-RELEASE</version>
+	<version>1.0.0-RELEASE</version>
 </dependency>
 ```
 
@@ -24,6 +24,12 @@ public HealthIndicator jenkinsHealthIndicator()
 {
 	return new JenkinsHealthIndicator("http://jenkins.com");
 }
+
+@Bean
+public HealthIndicator jenkinsHealthIndicator()
+{
+	return new JenkinsHealthIndicator("http://jenkins.com", "admin", "secretPassword");
+}
 ```
 
 #### Response ([health.json](http://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health))
@@ -33,8 +39,7 @@ public HealthIndicator jenkinsHealthIndicator()
 	"jenkins" : 
 	{
 		"status" : "UP",
-		"statusCode" : 200,
-		"version" : "1.647"
+		"version" : "2.42"
 	}
 }
 ```
