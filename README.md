@@ -13,7 +13,7 @@ SpringBoot Jenkins Actuator
 <dependency>
 	<groupId>com.itelg.spring</groupId>
 	<artifactId>spring-jenkins-actuator</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-RELEASE</version>
 </dependency>
 ```
 
@@ -39,7 +39,7 @@ public HealthIndicator jenkinsHealthIndicator()
 	"jenkins" : 
 	{
 		"status" : "UP",
-		"version" : "1.647"
+		"version" : "2.42"
 	}
 }
 ```
