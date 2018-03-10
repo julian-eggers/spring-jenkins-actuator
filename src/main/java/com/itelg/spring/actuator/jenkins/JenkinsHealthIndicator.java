@@ -1,58 +1,57 @@
 package com.itelg.spring.actuator.jenkins;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.boot.actuate.health.AbstractHealthIndicator;
 import org.springframework.boot.actuate.health.Health.Builder;
 
+import com.offbytwo.jenkins.JenkinsServer;
+
 public class JenkinsHealthIndicator extends AbstractHealthIndicator
 {
-    private static final Logger log = LoggerFactory.getLogger(JenkinsHealthIndicator.class);
-    private String jenkinsUrl;
+    private String url;
 
-    public JenkinsHealthIndicator(String jenkinsUrl)
+    private String username;
+
+    private String password;
+
+    public JenkinsHealthIndicator(String url)
     {
-        this.jenkinsUrl = jenkinsUrl;
+        this.url = url;
+    }
+
+    public JenkinsHealthIndicator(String url, String username, String password)
+    {
+        this.url = url;
+        this.username = username;
+        this.password = password;
     }
 
     @Override
     protected void doHealthCheck(Builder builder) throws Exception
     {
-        HttpURLConnection connection = null;
-        builder.up();
-        
-        try
+        JenkinsServer jenkins = createJenkinsServer();
+
+        if (jenkins.isRunning())
         {
-            URL url = new URL(jenkinsUrl);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("HEAD");
-            int statusCode = connection.getResponseCode();
-            builder.withDetail("statusCode", Integer.valueOf(statusCode));
-            
-            if (statusCode == 200)
-            {
-                builder.withDetail("version", connection.getHeaderField("X-Jenkins"));
-            }
+            String version = jenkins.getVersion().getLiteralVersion();
+            builder.up().withDetail("version", version);
         }
-        catch (Exception e)
+        else
         {
             builder.down();
-            log.error(e.getMessage(), e);
-        }
-        finally
-        {
-            if (connection != null)
-            {
-                connection.disconnect();
-            }
         }
     }
-    
-    public String getJenkinsUrl()
+
+    private JenkinsServer createJenkinsServer() throws URISyntaxException
     {
-        return jenkinsUrl;
+        if (StringUtils.isNotBlank(username) && StringUtils.isNotBlank(password))
+        {
+            return new JenkinsServer(new URI(url), username, password);
+        }
+
+        return new JenkinsServer(new URI(url));
     }
 }
