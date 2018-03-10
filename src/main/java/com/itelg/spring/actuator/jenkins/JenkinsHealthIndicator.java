@@ -54,4 +54,19 @@ public class JenkinsHealthIndicator extends AbstractHealthIndicator
 
         return new JenkinsServer(new URI(url));
     }
+
+    public String getUrl()
+    {
+        return url;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
 }

@@ -39,4 +39,13 @@ public class JenkinsHealthIndicatorTest
         assertEquals(Status.DOWN, health.getStatus());
         assertNull(health.getDetails().get("version"));
     }
+
+    @Test
+    public void testGetters()
+    {
+        JenkinsHealthIndicator healthIndicator = new JenkinsHealthIndicator("http://192.168.2.110:8080/", "admin", "d4920417fc6842039222df91b8c68be5");
+        assertEquals("http://192.168.2.110:8080/", healthIndicator.getUrl());
+        assertEquals("admin", healthIndicator.getUsername());
+        assertEquals("d4920417fc6842039222df91b8c68be5", healthIndicator.getPassword());
+    }
 }
