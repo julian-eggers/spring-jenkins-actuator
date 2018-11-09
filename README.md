@@ -43,3 +43,17 @@ public HealthIndicator jenkinsHealthIndicator()
 	}
 }
 ```
+
+
+
+## Build & Release
+
+### Build
+```
+mvn clean package
+```
+
+### Release
+```
+mvn clean deploy
+```
