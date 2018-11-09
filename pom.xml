@@ -5,7 +5,7 @@
   <name>spring-jenkins-actuator</name>
   <description>SpringBoot Jenkins Actuator</description>
   <url>https://github.com/julian-eggers/spring-jenkins-actuator</url>
-  <version>1.0.1-RELEASE</version>
+  <version>1.0.2-RELEASE</version>
 
   <properties>
     <!-- System -->
@@ -14,20 +14,20 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
     <!-- Testing -->
-    <jacoco.version>0.8.0</jacoco.version>
-    <powermock.version>1.7.3</powermock.version>
-    <easymock.version>3.5.1</easymock.version>
+    <jacoco.version>0.8.2</jacoco.version>
+    <powermock.version>2.0.0-RC.3</powermock.version>
+    <easymock.version>4.0.1</easymock.version>
     <!-- Build -->
-    <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
     <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
-    <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
+    <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-    <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
-    <maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
+    <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+    <maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
     <coveralls.version>4.3.0</coveralls.version>
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-    <maven-scm-provider-gitexe.version>1.9.5</maven-scm-provider-gitexe.version>
-    <github-release-plugin.version>1.2.0</github-release-plugin.version>
+    <maven-scm-provider-gitexe.version>1.11.1</maven-scm-provider-gitexe.version>
+    <github-release-plugin.version>1.3.0</github-release-plugin.version>
     <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
   </properties>
 
@@ -36,7 +36,7 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-actuator</artifactId>
-      <version>2.0.0.RELEASE</version>
+      <version>2.0.6.RELEASE</version>
     </dependency>
 
     <!-- Other -->
@@ -48,10 +48,16 @@
     <dependency>
       <groupId>com.offbytwo.jenkins</groupId>
       <artifactId>jenkins-client</artifactId>
-      <version>0.3.7</version>
+      <version>0.3.8</version>
     </dependency>
 
     <!-- Testing -->
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>3.11.1</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.easymock</groupId>
       <artifactId>easymock</artifactId>
