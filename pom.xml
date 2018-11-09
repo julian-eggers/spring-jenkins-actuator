@@ -221,6 +221,14 @@
         <groupId>org.eluder.coveralls</groupId>
         <artifactId>coveralls-maven-plugin</artifactId>
         <version>${coveralls.version}</version>
+        <!-- Required to support Jigsaw -->
+        <dependencies>
+          <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.2.3</version>
+          </dependency>
+        </dependencies>
       </plugin>
       <!-- DEPLOYMENT -->
       <plugin>
