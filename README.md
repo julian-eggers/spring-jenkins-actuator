@@ -13,7 +13,7 @@ SpringBoot Jenkins Actuator
 <dependency>
 	<groupId>com.itelg.spring</groupId>
 	<artifactId>spring-jenkins-actuator</artifactId>
-	<version>1.0.1-RELEASE</version>
+	<version>1.0.2-RELEASE</version>
 </dependency>
 ```
 
